@@ -1,14 +1,14 @@
+/* ESTILOS GENERALES*/
 html {
   background-color: rgb(47, 121, 138);
 }
 body {
   margin: 0;
 }
-
 body::-webkit-scrollbar {
   display: none;
 }
-
+/* CABECERA */
 header {
   background-color: aqua;
   height: 34px;
@@ -22,7 +22,6 @@ header:hover > .listaCompra {
   top: 56px;
   transition: all 0.7s;
 }
-
 .avatar {
   position: absolute;
   width: 45px;
@@ -30,20 +29,18 @@ header:hover > .listaCompra {
   left: 0;
   top: -5px;
 }
-
 #iconocarrito {
   font-family: 'Courier New', Courier, monospace ;
 }
-
+/* APP DE TEMPERATURA */
 #temperatura {
   margin-left: 10px;
   font-size: 20px;
 }
-
+/* CARRITO */
 #carroLista {
   display: grid;
 }
-
 .listaCompra {
   position: fixed;
   background-color: aqua;
@@ -52,21 +49,18 @@ header:hover > .listaCompra {
   border-radius: 0 0 20px 20px;
   z-index: 1;
 }
-
 .p {
   display: contents;
   font-size: 20px;
   font-weight: bolder;
 }
-
-
 .btnEliminar {
   display: contents;
   color: red;
   font-size: 18px;
   cursor: pointer;
 }
-
+/* BUSQUEDA */
 input {
   margin-left: 10px;
   font-size: 20px;
@@ -74,7 +68,6 @@ input {
   background-color: aqua;
   font-weight: bolder;
 }
-
 #contenedor {
   margin: 5px;
   padding: 5px;
@@ -82,7 +75,6 @@ input {
   height: 160px;
   border: 4px solid blue;
 }
-
 img {
   width: 90px;
   height: 90px;
@@ -91,7 +83,6 @@ img {
   border-radius: 50%;
   box-shadow: 5px 5px 10px blue;
 }
-
 .nombre {
   position: relative;
   top: -150px;
@@ -99,12 +90,10 @@ img {
   width: 75%;
   font-size: 15px;
 }
-
 p {
   margin-left: 26px;
   font-size: 18px;
 }
-
 button {
   position: absolute;
   margin-top: -35px;
@@ -117,4 +106,39 @@ button {
 }
 button:active {
   transform: scale(0.9);
+}
+@media only screen and (max-width: 470px) {
+  header {
+    height: 20px;
+    font-size: 13px;
+  }
+  .avatar {
+    width: 30px;
+    height: 30px;
+  }
+  .comprar {
+    margin-top: 16px;
+  }
+  header:hover > .listaCompra {
+    top: 42px;
+  }
+  .p {
+    font-size: 13px;
+  }
+  input {
+    font-size: 15px;
+  }
+  img {
+    width: 80px;
+    height: 80px;
+  }
+  .nombre {
+    font-size: 12px;
+  }
+  p {
+    font-size: 13px;
+  }
+  button {
+    font-size: 12px;    
+}
 }
