@@ -1,3 +1,5 @@
+let incremento = 1.1;
+let arrayProductos = [];
 let productos;
 let producto;
 let carrito = [];
@@ -53,19 +55,23 @@ const MercadoLibre = async (ingreso) => {
   productos = data.results;
   container.innerHTML = "";
   for(const prod of productos) {
+    arrayProductos.push(prod);
+  }
+  for(const prodArr of arrayProductos){
+    prodArr.price = prodArr.price * incremento;
+    prodArr.price = prodArr.price.toFixed(2);
     let caja = document.createElement("div");
     caja.setAttribute("id", "contenedor");
     caja.innerHTML = `
     <div class="precio">
-    <img src="${prod.thumbnail}">
-    <p>$${prod.price.toFixed(2)}</p>
-    <button id="btn${prod.id}" class="button">AGREGAR</button></div>
-    <div class="nombre"><h2>${prod.title}</h2></div>
-    `
+    <img src="${prodArr.thumbnail}">
+    <p>$${prodArr.price}</p>
+    <button id="btn${prodArr.id}" class="button">AGREGAR</button></div>
+    <div class="nombre"><h2>${prodArr.title}</h2></div>`
     container.append(caja);
-    let btnAgregar = document.getElementById(`btn${prod.id}`);
+    let btnAgregar = document.getElementById(`btn${prodArr.id}`);
     btnAgregar.addEventListener(`click`, ()=> {
-      CartAddProduct(prod);
+      CartAddProduct(prodArr);
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -79,7 +85,7 @@ const MercadoLibre = async (ingreso) => {
       });
       Toastify({
         text: `Agregado al carrito!`,
-        duration: 1900,
+        duration: 1500,
         position: 'right',
         gravity: "top"
     }).showToast()
@@ -96,7 +102,8 @@ function CartAddProduct(prod) {
   if(estaEnCarrito) {
     estaEnCarrito.cantidad++;
     RefreshCart(estaEnCarrito);
-    precioTotal += prod.price;
+    prod.price = Number(prod.price).toFixed(2);
+    precioTotal += Number(prod.price);
     CartAdd();
     carritoStorage.push(estaEnCarrito);
   }else {    
@@ -112,6 +119,7 @@ function ShowCart(prod) {
   let contenedorCarro = document.createElement("div");
     contenedorCarro.setAttribute("id", "content");
     let productoAgregar = prod;
+    prod.price = Number(prod.price).toFixed(2);
     productoAgregar.cantidad = 1;
     carrito.push(productoAgregar);
     carritoStorage.push(productoAgregar);
@@ -120,9 +128,9 @@ function ShowCart(prod) {
   div.innerHTML = `
   <p class="p" id="${prod.id}">${prod.cantidad}</p>
   <p class="p">${prod.title}</p>
-  <p class="p" id=precio${prod.id}>$${prod.price.toFixed(2)}</p>
+  <p class="p" id="precio${prod.id}">$${prod.price}</p>
   <button class="btnEliminar" id="Eliminar${prod.id}"><i class="fa-solid fa-trash-can"></i></button>`;
-  precioTotal += prod.price;
+  precioTotal += Number(prod.price);
   CartAdd();
 document.getElementById("carroLista").appendChild(div);
 DeleteProduct(productoAgregar);
@@ -147,8 +155,9 @@ function DeleteProduct(prodCarrito) {
 //Actualizar cantidad y precios del carrito.
 function RefreshCart(prod) {
   let multiplicacion = prod.price * prod.cantidad;
+  multiplicacion = multiplicacion.toFixed(2);
   document.getElementById(`${prod.id}`).innerHTML = `<p class="p" id="${prod.id}">${prod.cantidad}</p>`;
-  document.getElementById(`precio${prod.id}`). innerHTML = `<p class="p" id=precio${prod.id}>$${multiplicacion}</p>`;
+  document.getElementById(`precio${prod.id}`).innerHTML = `<p class="p" id="precio${prod.id}">$${multiplicacion}</p>`;
 }
 //Sumar carrito.
 function CartAdd() {
