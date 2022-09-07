@@ -1,6 +1,6 @@
 /* ESTILOS GENERALES*/
 html {
-  background-color: rgb(47, 121, 138);
+  background-color: rgb(92, 177, 196);
 }
 body {
   margin: 0;
@@ -10,7 +10,7 @@ body::-webkit-scrollbar {
 }
 /* CABECERA */
 header {
-  background-color: aqua;
+  background-image: linear-gradient(to right, rgb(144, 219, 241), rgb(154, 215, 224), rgb(181, 115, 235));
   height: 34px;
   padding: 10px;
   font-size: 25px;
@@ -29,6 +29,12 @@ header:hover > .listaCompra {
   left: 0;
   top: -5px;
 }
+#nombre {
+  position: absolute;
+  top: 0px;
+  left: 60px;
+  font-size: 15px;
+}
 #iconocarrito {
   font-family: 'Courier New', Courier, monospace ;
 }
@@ -36,6 +42,8 @@ header:hover > .listaCompra {
 #temperatura {
   margin-left: 10px;
   font-size: 20px;
+  font-weight: bolder;
+  color: rgb(21, 21, 107);
 }
 /* CARRITO */
 #carroLista {
@@ -43,7 +51,7 @@ header:hover > .listaCompra {
 }
 .listaCompra {
   position: fixed;
-  background-color: aqua;
+  background-image: linear-gradient(to right, rgb(144, 219, 241), rgb(154, 215, 224), rgb(181, 115, 235));
   width: 100%;
   top: -2000px;
   border-radius: 0 0 20px 20px;
@@ -65,13 +73,13 @@ input {
   margin-left: 10px;
   font-size: 20px;
   border-radius: 10px;
-  background-color: aqua;
+  background-color: rgb(220, 146, 247);
   font-weight: bolder;
 }
 #contenedor {
   margin: 5px;
   padding: 5px;
-  background-color: blueviolet;
+  background-image: linear-gradient(to right, rgb(208, 0, 255), rgb(179, 136, 218), rgb(116, 7, 194));
   height: 160px;
   border: 4px solid blue;
 }
@@ -81,7 +89,7 @@ img {
   margin: 5px;
   border: 4px solid blue;
   border-radius: 50%;
-  box-shadow: 5px 5px 10px blue;
+  box-shadow: 2px 2px 10px blue;
 }
 .nombre {
   position: relative;
@@ -89,10 +97,13 @@ img {
   left: 120px;
   width: 75%;
   font-size: 15px;
+  color: rgb(39, 39, 150);
 }
 p {
   margin-left: 26px;
   font-size: 18px;
+  font-weight: bolder;
+  color: rgb(39, 39, 150);
 }
 button {
   position: absolute;
@@ -100,7 +111,7 @@ button {
   right: 25px;
   font-weight: bolder;
   color: blue;
-  background-color: aquamarine;
+  background-color: rgb(222, 163, 252);
   border-radius: 10px;
   cursor: pointer;
 }
@@ -110,11 +121,24 @@ button:active {
 @media only screen and (max-width: 470px) {
   header {
     height: 20px;
-    font-size: 13px;
+    font-size: 14px;
+  }
+  i {
+    margin-left: -100px;
+  }
+  #nombre {
+    display: none;
   }
   .avatar {
     width: 30px;
     height: 30px;
+  }
+  #temperatura {
+    margin-left: 5px;
+    font-size: 15px;
+  }
+  #contenedor {
+    height: 130px;
   }
   .comprar {
     margin-top: 16px;
@@ -133,12 +157,14 @@ button:active {
     height: 80px;
   }
   .nombre {
-    font-size: 12px;
+    font-size: 11px;
+    left: 105px;
+    width: 65%;
   }
   p {
     font-size: 13px;
   }
   button {
     font-size: 12px;    
-}
+  }
 }

@@ -44,7 +44,9 @@ fetch('https://api.github.com/users/calderazzi')
 .then((resp) => resp.json())
 .then((data) => {
   let avatar = document.getElementById("avatar");
+  let nombre = document.getElementById("nombre");
   avatar.innerHTML = `<img class="avatar" src="${data.avatar_url}">`;
+  nombre.innerHTML = `<h4>${data.name}</h4>`
 }).catch(error=> {
     Swal.fire("error");
   });
@@ -87,7 +89,10 @@ const MercadoLibre = async (ingreso) => {
         text: `Agregado al carrito!`,
         duration: 1500,
         position: 'right',
-        gravity: "top"
+        gravity: "top",
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
     }).showToast()
     })
   }
@@ -185,9 +190,12 @@ function VerifyStorage() {
     });
     Toastify({
       text: 'Tu carrito te espera!',
-      duration: 1900,
+      duration: 2000,
       position: 'right',
-      gravity: "top"
+      gravity: "top",
+      style: {
+        background: "linear-gradient(to right, #b00000, #96c93d, #b00000)",
+      },
   }).showToast()
     for(elemento of arrayCarrito ) {
       CartAddProduct(elemento);
@@ -204,11 +212,11 @@ const Buy = async () => {
       title: Element.title,
       description: "",
       picture_url: Element.thumbnail,
-      category_id: Element.id,
+      category_id: Number(Element.id),
       quantity: Element.cantidad,
       currency_id: "ARS",
-      unit_price: Element.price
-    };
+      unit_price: Number(Element.price)
+    }
     return nuevoElemento;
   })
   let response = await fetch("https://api.mercadopago.com/checkout/preferences", {
@@ -220,7 +228,8 @@ const Buy = async () => {
       items: productosToMap
     })
   })
-  let data = await response.json();
+  let data = await response.json()
+  console.log(data);
   window.open(data.init_point, "_blank");
 }
 OnLoad();
