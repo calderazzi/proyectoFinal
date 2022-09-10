@@ -56,6 +56,7 @@ const MercadoLibre = async (ingreso) => {
   let data = await response.json();
   productos = data.results;
   container.innerHTML = "";
+  arrayProductos = [];
   for(const prod of productos) {
     arrayProductos.push(prod);
   }
